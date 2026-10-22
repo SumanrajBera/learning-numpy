@@ -43,3 +43,6 @@ np.zeros([10,5], 7)
 - np.arange(start, stop): Here we give start and stop values to create an 1D array. By default start is 0.
 - np.linspace(start, stop, count): Here we get start and stop both inclusive and count is the number of elements we want which is evenly spaced. By default count is 50.
 - np.eye(n): This gives us an identity matrix of n*n.
+
+*Note*: Numpy broadcasts scalar addition example if we do `np.array([10,20]) + 5` then the result will be `[15,25]`. 
+*Note*: Numpy performs element-wise multiplication with multiple arrays example if we do `np.array([10,20]) * np.array([4, 3])` then the result will be `[40, 60]`.
