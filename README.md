@@ -21,3 +21,25 @@ import numpy as np
 matLi = [[1,2,3],[0,10,7]]
 matrix = np.array(matLi)
 ```
+
+## Built-in Methods
+- np.zeros(): This method is used to make vector or matrix of zeros
+```py
+import numpy as np
+# For 1D array with n zeros
+np.zeros(10)
+# For 2D array [row, col]
+np.zeros([10,5])
+```
+- np.ones(): This is same as zeros but for ones
+- np.full(): This is similar to zeros and ones but for any other number
+```py
+import numpy as np
+# For 1D array with n numbers
+np.zeros(10, 7)
+# For 2D array [row, col] of n
+np.zeros([10,5], 7)
+```
+- np.arange(start, stop): Here we give start and stop values to create an 1D array. By default start is 0.
+- np.linspace(start, stop, count): Here we get start and stop both inclusive and count is the number of elements we want which is evenly spaced. By default count is 50.
+- np.eye(n): This gives us an identity matrix of n*n.
