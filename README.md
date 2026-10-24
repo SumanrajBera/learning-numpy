@@ -46,3 +46,7 @@ np.zeros([10,5], 7)
 
 *Note*: Numpy broadcasts scalar addition example if we do `np.array([10,20]) + 5` then the result will be `[15,25]`. 
 *Note*: Numpy performs element-wise multiplication with multiple arrays example if we do `np.array([10,20]) * np.array([4, 3])` then the result will be `[40, 60]`.
+
+- np.random.rand(row,col): We get randome decimal matrix in shape of the given row and column
+- np.random.randint(start, end, size = (row, col) / (num)): Here we get numbers between start (inclusive) and end (exclusive) and the size can be matrix if given 2 values and 1 value will make it a vector of that size.
+- np.random.randn(row, col): This is used for normal distribution in bell curve where values lie in between -3 and +3. row and col are used for making it a matrix. If 1 value is given then it will be a vector.
