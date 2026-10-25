@@ -44,8 +44,7 @@ np.zeros([10,5], 7)
 - np.linspace(start, stop, count): Here we get start and stop both inclusive and count is the number of elements we want which is evenly spaced. By default count is 50.
 - np.eye(n): This gives us an identity matrix of n*n.
 
-*Note*: Numpy broadcasts scalar addition example if we do `np.array([10,20]) + 5` then the result will be `[15,25]`. 
-*Note*: Numpy performs element-wise multiplication with multiple arrays example if we do `np.array([10,20]) * np.array([4, 3])` then the result will be `[40, 60]`.
+*Note*: NumPy automatically scales operations **(mathematical, logical, or structural )** across arrays; it performs scalar broadcasting for single values `(e.g., np.array([10, 20]) + 5 results in [15, 25])` and element-wise multiplication when combining multiple arrays of matching shapes `(e.g., np.array([10, 20]) * np.array([4, 3]) results in [40, 60])`
 
 - np.random.rand(row,col): We get randome decimal matrix in shape of the given row and column
 - np.random.randint(start, end, size = (row, col) / (num)): Here we get numbers between start (inclusive) and end (exclusive) and the size can be matrix if given 2 values and 1 value will make it a vector of that size.
