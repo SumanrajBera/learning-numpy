@@ -264,3 +264,266 @@ Calculation:
 
 - Row 1: `1 + 2 + 3 = 6`
 - Row 2: `4 + 5 + 6 = 15`
+
+## Fancy Indexing, Conditional Selection, Sorting, and Stacking
+
+### Fancy Indexing
+
+Fancy indexing allows us to select multiple elements from an array by passing a list or an array of indices.
+
+#### Fancy Indexing in a 1D Array
+
+```python
+import numpy as np
+
+arr = np.arange(1, 20)
+print(arr)
+# [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+
+print(arr[[1, 5, 8]])
+# [2 6 9]
+```
+
+**Explanation:**
+- NumPy uses zero-based indexing.
+- `arr[[1, 5, 8]]` selects elements at indices `1`, `5`, and `8`.
+- We get a new array containing the selected elements.
+
+#### Fancy Indexing in a 2D Array
+
+```python
+arr2D = np.arange(1, 13).reshape(3, 4)
+
+print(arr2D)
+# [[ 1  2  3  4]
+#  [ 5  6  7  8]
+#  [ 9 10 11 12]]
+
+print(arr2D[1, 2])
+# 7
+
+print(arr2D[[0, 2, 2], [1, 3, 2]])
+# [ 2 12 11]
+```
+
+**Explanation:**
+
+- `arr2D[1, 2]` selects the element at row `1`, column `2`.
+- `arr2D[[0, 2, 2], [1, 3, 2]]` selects corresponding row and column pairs.
+
+| Row index | Column index | Selected element |
+|---:|---:|---:|
+| 0 | 1 | 2 |
+| 2 | 3 | 12 |
+| 2 | 2 | 11 |
+
+**Important:** The two index lists work together element by element, rather than selecting every combination of rows and columns.
+
+---
+
+### Conditional Selection
+
+Conditional selection allows us to filter array elements based on a condition.
+
+```python
+arr = np.random.randint(1, 20, 5)
+
+print(arr)
+print(arr[arr > 5])
+```
+
+**Explanation:**
+
+- `np.random.randint(1, 20, 5)` generates five random integers from `1` to `19`.
+- `arr > 5` creates a Boolean array containing `True` or `False`.
+- `arr[arr > 5]` returns only the elements that satisfy the condition.
+
+For example, if `arr = [3, 8, 12, 4, 17]`, the result is:
+
+```python
+arr > 5
+# [False  True  True False  True]
+
+arr[arr > 5]
+# [ 8 12 17]
+```
+
+#### Using `np.where()` to Get Indices
+
+```python
+print(np.where(arr > 5))
+```
+
+`np.where(condition)` returns the indices where the condition is `True`.
+
+For the example above:
+
+```python
+np.where(arr > 5)
+# (array([1, 2, 4]),)
+```
+
+**Note:** For a 1D array, the result is a tuple containing an array of indices.
+
+#### Using `np.where()` to Replace Values
+
+```python
+print(np.where(arr > 5, arr, 0))
+```
+
+Syntax:
+
+```python
+np.where(condition, value_if_true, value_if_false)
+```
+
+- If the condition is `True`, use the corresponding element from `arr`.
+- If the condition is `False`, use `0`.
+
+Example:
+
+```python
+arr = np.array([3, 8, 12, 4, 17])
+
+np.where(arr > 5, arr, 0)
+# [ 0  8 12  0 17]
+```
+
+---
+
+### Sorting
+
+NumPy provides functions to sort elements and find their sorted positions.
+
+#### `np.sort()`
+
+Returns a sorted copy of an array in ascending order by default.
+
+```python
+arr = np.random.randint(30, 60, 5)
+
+print(arr)
+print(np.sort(arr))
+```
+
+Example:
+
+```python
+arr = np.array([45, 32, 57, 41, 36])
+
+np.sort(arr)
+# [32 36 41 45 57]
+```
+
+**Important:** `np.sort(arr)` does not modify the original array.
+
+#### `np.argsort()`
+
+Returns the indices that would arrange an array in sorted order.
+
+```python
+arr = np.array([45, 32, 57, 41, 36])
+
+print(np.argsort(arr))
+# [1 4 3 0 2]
+```
+
+The sorted order is obtained by visiting indices `1`, `4`, `3`, `0`, and `2`.
+
+```python
+arr[np.argsort(arr)]
+# [32 36 41 45 57]
+```
+
+**Difference:**
+
+- `np.sort(arr)` returns the sorted values.
+- `np.argsort(arr)` returns the indices corresponding to the sorted order.
+
+#### Sorting a 2D Array
+
+```python
+arr2D = np.array([
+    [3, 1, 2],
+    [9, 7, 8]
+])
+
+print(np.sort(arr2D))
+# [[1 2 3]
+#  [7 8 9]]
+```
+
+By default, NumPy sorts each row independently along the last axis.
+
+To sort each column instead:
+
+```python
+np.sort(arr2D, axis=0)
+```
+
+- `axis=0`: sort down each column.
+- `axis=1`: sort across each row.
+
+---
+
+### Concatenation and Stacking
+
+Concatenation and stacking combine multiple arrays into a larger array.
+
+#### `np.concat()`
+
+Concatenates arrays along an existing axis.
+
+```python
+a = np.array([1, 2, 3, 4])
+b = np.array([5, 6, 7])
+
+result = np.concat([a, b])
+
+print(result)
+# [1 2 3 4 5 6 7]
+```
+
+For 1D arrays, concatenation joins their elements into one longer array.
+
+For multidimensional arrays, the arrays must have matching dimensions along every axis except the axis being concatenated.
+
+#### `np.vstack()`
+
+Stacks arrays vertically, adding rows.
+
+```python
+A = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+B = np.array([
+    [7, 8, 9],
+    [10, 11, 12]
+])
+
+print(np.vstack([B, A]))
+# [[ 7  8  9]
+#  [10 11 12]
+#  [ 1  2  3]
+#  [ 4  5  6]]
+```
+
+**Explanation:**
+- The rows of `B` appear first, followed by the rows of `A`.
+- Both arrays must have the same number of columns.
+
+#### `np.hstack()`
+
+Stacks arrays horizontally, adding columns when working with 2D arrays.
+
+```python
+print(np.hstack([A, B]))
+# [[ 1  2  3  7  8  9]
+#  [ 4  5  6 10 11 12]]
+```
+
+**Explanation:**
+- The columns of `B` are added to the right of `A`.
+- Both arrays must have the same number of rows.
