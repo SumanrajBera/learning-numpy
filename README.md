@@ -43,7 +43,7 @@ np.zeros([10,5], 7)
 - np.arange(start, stop): Here we give start and stop values to create an 1D array. By default start is 0.
 - np.linspace(start, stop, count): Here we get start and stop both inclusive and count is the number of elements we want which is evenly spaced. By default count is 50.
 - np.eye(n): This gives us an identity matrix of n*n.
-- np.fliplr(arr): This flips the array from left to right
+- np.fliplr(arr): This flips the array from left to right.*This for 2D array only*
 
 *Note*: NumPy automatically scales operations **(mathematical, logical, or structural )** across arrays; it performs scalar broadcasting for single values `(e.g., np.array([10, 20]) + 5 results in [15, 25])` and element-wise multiplication when combining multiple arrays of matching shapes `(e.g., np.array([10, 20]) * np.array([4, 3]) results in [40, 60])`
 
